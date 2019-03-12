@@ -11,13 +11,36 @@ namespace Odev_1
 
         public override void Move()
         {
-            throw new NotImplementedException();
+            double p = Roll();
+
+            // down
+            if (p < .1)
+            {
+
+            }
+
+            // up
+            if (.1 <= p && p < .3)
+            {
+
+
+            }
+
+            // fire [1,1]
+            if (.3 <= p && p < .5)
+            {
+
+            }
+
+            // wait
+            if (.5 <= p && p < 1)
+            {
+
+            }
         }
 
-        public override void Wait()
-        {
-            throw new NotImplementedException();
-        }
+        // Do nothing 
+        public override void Wait() { }
 
         public override void Fire(Asker enemy)
         {

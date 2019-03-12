@@ -5,19 +5,25 @@ using System.Text;
 
 namespace Odev_1
 {
-    abstract class Asker
+    public abstract class Asker
     {
-        private Bolge koordinat;
-        public Bolge Koordinat { get { return koordinat; } }
+        public int Health { get; set; }
+        public bool Alive { get; set; }
+        private Takim Team { get; set; }
+        // Location: Using Bolge instead of Point
+        private Bolge Location { get; set; }
 
-        // ..... //
+        // Abstract methods
+        public abstract void Move();
+        public abstract void Wait();
+        public abstract void Fire(Asker enemy);
 
-        //Abstract sınıfların implementasyonları çoçuk sınıflarda gerçekleştirilmelidir.
-        public abstract void HaraketEt();
-
-        public abstract void Bekle();
-
-        // ..... //
+        // Roll between (0, 1)
+        Random rand = new Random(DateTime.Now.Millisecond);
+        public double Roll()
+        {
+            return rand.NextDouble();
+        }
 
     }
 }

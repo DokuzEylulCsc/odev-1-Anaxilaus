@@ -8,6 +8,9 @@ namespace Odev_1
 {
     public class Ermeydani
     {
+        // Log manager
+        public Logger Log;
+
         // Set dimensions
         public Bolge[,] Mapping { get; private set; }
         public Takim[] Teams { get; set; }
@@ -28,7 +31,7 @@ namespace Odev_1
                     //Console.WriteLine("Mapped index to Bolge object at " + x + ", " + y);
                 }
             }
-            Console.WriteLine("\t- Map initialized.");
+            Log.WriteLine("\t- Map initialized.");
         }
 
        
@@ -36,27 +39,29 @@ namespace Odev_1
         // With initial locations of first and last 5x5 corners
         void InitializeTeams()
         {
-            Console.WriteLine("\nFirst team:");
+            Log.WriteLine("\nFirst team:");
             Teams[0] = new Takim("A", this, new Point(0, 0), new Point(5, 5));
-            Console.WriteLine("\nSecond team:");
+            Log.WriteLine("\nSecond team:");
             Teams[1] = new Takim("B", this, new Point(DimensionX - 5, DimensionY - 5), new Point(DimensionX, DimensionY));
 
-            Console.WriteLine("\n\t- Teams initialized.");
+            Log.WriteLine("\n\t- Teams initialized.");
         }
 
         void Initialize()
         {
+            Log = new Logger();
             Teams = new Takim[2];
 
-            this.InitializeMap();
-            this.InitializeTeams();
-            Console.WriteLine("\t- Initialization completed.");
+            InitializeMap();
+            InitializeTeams();
+            Log.WriteLine("\t- Initialization completed.");
 
         }
 
         void RunSim()
         {
-            Console.WriteLine("\t- Starting simulation.\n");
+
+            Log.WriteLine("\t- Starting simulation.\n");
             Asker select = Teams[0].Team[0];
 
             while(Teams[0].Alive() && Teams[1].Alive())
@@ -68,8 +73,10 @@ namespace Odev_1
             if (Teams[0].GetCount() > 0) winner = Teams[0];
             else winner = Teams[1];
 
-            Console.WriteLine("\t- Simulation Ended. Winner is Team {0} with {1} members.\n",
-                winner.Name, winner.GetCount());
+            Log.WriteLine(String.Format("\n\t- Simulation Ended. Winner is Team {0} with remaining {1} members.",
+                winner.Name, winner.GetCount()));
+
+            Log.WritetoFile();
         }
 
         public void StartSim()

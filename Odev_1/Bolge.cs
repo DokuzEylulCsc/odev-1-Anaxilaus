@@ -26,12 +26,18 @@ namespace Odev_1
 
         // Returns true if MoveIn successful
         // Otherwise returns false
-        // Handles MoveOut process of soldier too.
+        // Handles MoveOut process of soldier and logs
         public bool MoveIn(Asker soldier)
         {
             if (this.Soldier != null) return false;
 
-            if (soldier.Location != null) soldier.Location.MoveOut();
+            if (soldier.Location != null)
+            {
+                // MoveOut
+                soldier.Location.MoveOut();
+                Map.Log.WriteLine(String.Format("{0} from Team {1} changed location from {2} to {3}",
+                    Asker.StripType(soldier), soldier.Team.Name, soldier.Location.Coord, this.Coord));
+            }
             this.Soldier = soldier;
             soldier.Location = this;
             return true;

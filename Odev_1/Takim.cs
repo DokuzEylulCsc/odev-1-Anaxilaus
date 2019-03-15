@@ -69,7 +69,7 @@ namespace Odev_1
                     Map.Mapping[x, y].MoveIn(soldier);
                 }
 
-                Console.WriteLine((c + 1).ToString() + " - " + soldier.GetType().ToString().Split(new char[] { '.' })[1] + " at " + soldier.Location.Coord);
+                Map.Log.WriteLine((c + 1).ToString() + " - " + soldier.GetType().ToString().Split(new char[] { '.' })[1] + " at " + soldier.Location.Coord);
                 Team.Add(soldier);
                 soldier.Team = this;
             }

@@ -51,6 +51,7 @@
     <Compile Include="Takim.cs" />
     <Compile Include="Tegmen.cs" />
     <Compile Include="Yuzbasi.cs" />
+    <Compile Include="Logger.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

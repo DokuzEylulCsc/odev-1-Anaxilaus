@@ -14,6 +14,7 @@ namespace Odev_1
         public Bolge Location { get; set; }
         public Random Rand { get; set; }
 
+
         public Asker()
         {
             Rand = new Random(DateTime.Now.Millisecond);
@@ -82,13 +83,18 @@ namespace Odev_1
             if (Health <= 0) 
             {
                 // Dead
-                Console.WriteLine("* {0} from Team {1} attacked a {2} from {3} and shot him dead!",
-                    StripType(Enemy), Enemy.Team.Name, StripType(this), Team.Name);
+                Location.Map.Log.WriteLine(String.Format("{0} from Team {1} attacked {2} from Team {3} and shot him dead at {4}!",
+                    StripType(Enemy), Enemy.Team.Name, StripType(this), Team.Name, Location.Coord));
 
                 Alive = false;
                 Location.MoveOut();
                 Team.RemoveDead(this);
                 Team = null;
+            }
+            else
+            {
+                Location.Map.Log.WriteLine(String.Format("{0} from Team {1} attacked {2} from Team {3} and reduced his health by {4} to {5} at {6}.",
+                    StripType(Enemy), Enemy.Team.Name, StripType(this), Team.Name, Damage.ToString(), Health.ToString(), Location.Coord));
             }
         }
 

@@ -6,7 +6,9 @@ namespace Odev_1
 {
     public class Logger
     {
-        // Writes log file to Debug directory   
+        // Writes log file to where program is executed
+        // Prints log file's absolute path to Console
+        
         private bool Echo { get; }
         private List<string> Logs { get; }
         private string Filename { get; }

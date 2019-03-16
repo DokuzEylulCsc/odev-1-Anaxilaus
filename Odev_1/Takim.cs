@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 
 namespace Odev_1
@@ -60,7 +58,7 @@ namespace Odev_1
                         num_Er += 1;
                     }
                 }
-                
+
                 // Set initial location
                 while (soldier.Location == null)
                 {
@@ -69,14 +67,13 @@ namespace Odev_1
                     Map.Mapping[x, y].MoveIn(soldier);
                 }
 
-                Map.Log.WriteLine((c + 1).ToString() + " - " + soldier.GetType().ToString().Split(new char[] { '.' })[1] + " at " + soldier.Location.Coord);
+                Map.Log.WriteLine(String.Format("{0} - {1} at {2}", (c + 1), soldier,  soldier.Location));
                 Team.Add(soldier);
                 soldier.Team = this;
             }
-
         }
 
-        public bool notEquals(Takim other)
+        public bool NotEquals(Takim other)
         {
             return Id != other.Id;
         }
@@ -101,7 +98,7 @@ namespace Odev_1
             for (int s = 0; s < GetCount(); s++) Team[s].Move();
         }
 
-        public string GetName()
+        public override string ToString()
         {
             return Name;
         }

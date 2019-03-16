@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 
 namespace Odev_1
@@ -35,8 +32,8 @@ namespace Odev_1
             {
                 // MoveOut
                 soldier.Location.MoveOut();
-                Map.Log.WriteLine(String.Format("{0} from Team {1} changed location from {2} to {3}",
-                    Asker.StripType(soldier), soldier.Team.Name, soldier.Location.Coord, this.Coord));
+                Map.Log.WriteLine(String.Format("{0} from Team {1} changed location from {2} to {3}.",
+                    soldier, soldier.Team, soldier.Location, this));
             }
             this.Soldier = soldier;
             soldier.Location = this;
@@ -44,6 +41,9 @@ namespace Odev_1
 
         }
 
-
+        public override string ToString()
+        {
+            return "[" + Coord.X + ", " + Coord.Y + "]";
+        }
     }
 }

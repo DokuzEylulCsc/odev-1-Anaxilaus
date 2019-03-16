@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 
 namespace Odev_1
@@ -74,7 +71,7 @@ namespace Odev_1
             else winner = Teams[1];
 
             Log.WriteLine(String.Format("\n\t- Simulation Ended. Winner is Team {0} with remaining {1} members.",
-                winner.Name, winner.GetCount()));
+                winner, winner.GetCount()));
 
             Log.WritetoFile();
         }

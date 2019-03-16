@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Odev_1
 {
@@ -9,11 +6,6 @@ namespace Odev_1
     {
         public readonly int[] HitPoints = { 15, 25, 40 };
         public const int Range = 3;
-
-        public Yuzbasi() : base()
-        {
-
-        }
 
         public override void Move()
         {

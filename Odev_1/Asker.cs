@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Odev_1
 {
@@ -60,7 +58,7 @@ namespace Odev_1
                     if (LocationValid(x, y))
                     {
                         Asker soldier = Location.Map.Mapping[x, y].Soldier;
-                        if (soldier != null && Team.notEquals(soldier.Team))
+                        if (soldier != null && Team.NotEquals(soldier.Team))
                         {
                             Enemies.Add(soldier);
                         }
@@ -70,11 +68,17 @@ namespace Odev_1
             return Enemies;
         }
 
+
         // Beautify GetType
         // Converts Odev1.Type to Type
         public static string StripType(Asker obj)
         {
             return obj.GetType().ToString().Split(new char[] { '.' })[1];
+        }
+
+        public override string ToString()
+        {
+            return StripType(this);
         }
 
         public void GotAttacked(Asker Enemy, int Damage)
@@ -84,7 +88,7 @@ namespace Odev_1
             {
                 // Dead
                 Location.Map.Log.WriteLine(String.Format("{0} from Team {1} attacked {2} from Team {3} and shot him dead at {4}!",
-                    StripType(Enemy), Enemy.Team.Name, StripType(this), Team.Name, Location.Coord));
+                    Enemy, Enemy.Team, this, Team, Location));
 
                 Alive = false;
                 Location.MoveOut();
@@ -94,7 +98,7 @@ namespace Odev_1
             else
             {
                 Location.Map.Log.WriteLine(String.Format("{0} from Team {1} attacked {2} from Team {3} and reduced his health by {4} to {5} at {6}.",
-                    StripType(Enemy), Enemy.Team.Name, StripType(this), Team.Name, Damage.ToString(), Health.ToString(), Location.Coord));
+                    Enemy, Enemy.Team, this, Team, Damage, Health, Location));
             }
         }
 
@@ -134,29 +138,41 @@ namespace Odev_1
             else Down();
         }
 
-        // Cross moves below derives from 4 directional moves
+        // Cross moves, if stuck Wait
         public void LowerLeft()
         {
-            Left();
-            Down();
+            int new_x = Location.Coord.X - 1;
+            int new_y = Location.Coord.Y - 1;
+
+            if (LocationValid(new_x, new_y)) TryChangeLocation(new_x, new_y);
+            else Wait();
         }
 
         public void LowerRight()
         {
-            Right();
-            Down();
+            int new_x = Location.Coord.X + 1;
+            int new_y = Location.Coord.Y - 1;
+
+            if (LocationValid(new_x, new_y)) TryChangeLocation(new_x, new_y);
+            else Wait();
         }
 
         public void UpperLeft()
         {
-            Left();
-            Up();
+            int new_x = Location.Coord.X - 1;
+            int new_y = Location.Coord.Y + 1;
+
+            if (LocationValid(new_x, new_y)) TryChangeLocation(new_x, new_y);
+            else Wait();
         }
 
         public void UpperRight()
         {
-            Right();
-            Up();
+            int new_x = Location.Coord.X + 1;
+            int new_y = Location.Coord.Y + 1;
+
+            if (LocationValid(new_x, new_y)) TryChangeLocation(new_x, new_y);
+            else Wait();
         }
     }
 }

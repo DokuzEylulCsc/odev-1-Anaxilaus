@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Odev_1
 {
@@ -9,11 +6,6 @@ namespace Odev_1
     {
         private readonly int[] HitPoints = { 10, 20, 25 };
         private const int Range = 2;
-
-        public Tegmen() : base()
-        {
-
-        }
 
         public override void Move()
         {
